@@ -15,10 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-     - name: Setup Node.js environment
-       uses: actions/setup-node@v6.2.0
-       with:
-         node-version: 15.5.1
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v6.2.0
+      with:
+        node-version: 15.5.1
 
     - name: Install Dependencies
       working-directory: codebase/rdicidr-0.1.0
