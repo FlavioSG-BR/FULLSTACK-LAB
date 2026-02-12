@@ -1,0 +1,19 @@
+FROM node:15 AS builder
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm run lint
+
+# Tests
+RUN CI=true npm run test
+
+# Build
+RUN npm run build
+
+EXPOSE 3000
+ENTRYPOINT ["node", "build/index.js"]
