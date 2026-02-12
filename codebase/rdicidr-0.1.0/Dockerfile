@@ -1,15 +1,13 @@
-FROM node:15 as base
+FROM node:15 as builder
 
-WORKDIR
+WORKDIR /app
 
-RUN 
+COPY package*.json ./
 
-COPY
+COPY . .
 
-ENV
+RUN npm run build
 
-USER 
+EXPOSE 3000
 
-EXPOSE
 
-CMD
