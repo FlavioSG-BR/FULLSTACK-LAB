@@ -1,15 +1,39 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: ingress-wildcard-host
+  name: challenge-svc
+  namespace: production
+  labels:
+    app: challenge
 spec:
   ports:
   - port: 8080
-    name: web
-  clusterIP: None
+    targetPort: 80
+    name: challenge
   selector:
-    app: app-name
+    app: challenge
 ---
 apiVersion: apps/v1
 kind: StatefulSet
-## TODO: Complete the rest
+metadata:
+  name: challenge
+  namespace: production
+spec:
+  selector:
+    matchLabels:
+      app: challenge # has to match .spec.template.metadata.labels
+  serviceName: "challenge-svc"
+  replicas: 3 # by default is 1
+  minReadySeconds: 10 # by default is 0
+  template:
+    metadata:
+      labels:
+        app: challenge # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: challenge
+        image: flaviosgbr/fullstacklab:latest
+        ports:
+        - containerPort: 80
+          name: challenge
