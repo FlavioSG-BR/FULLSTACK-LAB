@@ -1,22 +1,15 @@
+FROM 
 
-ARG NODE_VERSION=15
+WORKDIR
 
-FROM node:${NODE_VERSION}-alpine as builder
+RUN 
 
-WORKDIR /app
+COPY
 
-COPY package*.json ./
+ENV
 
-COPY . .
+USER 
 
-RUN npm run build
+EXPOSE
 
-CMD npm start
-
-FROM nginx:alpine
-
-COPY --from=builder /app/build /usr/share/nginx/html
-
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
-
-EXPOSE 80
+CMD
