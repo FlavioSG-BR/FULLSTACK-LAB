@@ -40,7 +40,7 @@ jobs:
     - name: Build the Docker image
       working-directory: codebase/rdicidr-0.1.0
       run: |
-        docker build -t flaviosgbr/fullstacklab:${{github.run_id}}
+        docker build . -t flaviosgbr/fullstacklab:${{github.run_id}}
         docker tag flaviosgbr/fullstacklab:${{github.run_id}} flaviosgbr/fullstacklab:latest
         docker push flaviosgbr/fullstacklab:${{github.run_id}}
         docker push flaviosgbr/fullstacklab:latest
