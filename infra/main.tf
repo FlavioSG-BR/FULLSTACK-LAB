@@ -50,10 +50,9 @@ resource "azurerm_container_group" "app" {
       port     = 80
       protocol = "TCP"
     }
-    exposed_port {
+  }
+exposed_port {
       port = 80
       protocol = "TCP"
   }
-
-}
 }
