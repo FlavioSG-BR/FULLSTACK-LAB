@@ -36,9 +36,9 @@ resource "azurerm_container_group" "challenge" {
   os_type             = "Linux"
   
   image_registry_credential {
-    server: "index.docker.io"
-    username: var.dockerhub_username
-    password: var.dockerhub_token
+    server = "index.docker.io"
+    username =  var.dockerhub_username
+    password = var.dockerhub_token
   }
 
 
