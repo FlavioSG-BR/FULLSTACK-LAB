@@ -50,5 +50,6 @@ jobs:
       run: terraform init
       
     - name: Terraform Plan
+      working-directory: infra
       if: github.event_name == 'push' || github.event.inputs.actions == 'PLAN'
       run: terraform plan
