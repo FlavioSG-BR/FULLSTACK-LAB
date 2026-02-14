@@ -56,6 +56,4 @@ resource "azurerm_container_group" "challenge" {
 
 }
 
-output "conteiner_url" {
-    value = "http://${{azurerm_container_group.app.ip_address}}"
-}
+
