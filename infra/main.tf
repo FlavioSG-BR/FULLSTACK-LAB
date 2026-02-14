@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 
 
-resource "azurerm_resource_group" "challenge-rg" {
+resource "azurerm_resource_group" "rg" {
   name     = "challenge-rg"
   location = "West Europe"
 }
