@@ -19,12 +19,12 @@ resource "azurerm_resource_group" "challenge-rg" {
 }
 
 variable "dockerhub_username" {
-    type: string
+    type = string
 }
 
 variable "dockerhub_token" {
-    type: string
-    sensitive: true
+    type = string
+    sensitive = true
 }
 
 resource "azurerm_container_group" "challenge" {
