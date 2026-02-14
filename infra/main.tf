@@ -2,13 +2,12 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=4.1.0"
+      version = ">=3.0"
     }
   }
 }
 
 provider "azurerm" {
-  resource_provider_registrations = "none" # This is only required when the User, Service Principal, or Identity running Terraform lacks the permissions to register Azure Resource Providers.
   features {}
 }
 
@@ -27,10 +26,10 @@ variable "dockerhub_token" {
     sensitive = true
 }
 
-resource "azurerm_container_group" "challenge" {
-  name                = "example-continst"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+resource "azurerm_container_group" "app" {
+  name                = "challenge-app"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
   ip_address_type     = "Public"
   dns_name_label      = "aci-label"
   os_type             = "Linux"
@@ -52,6 +51,9 @@ resource "azurerm_container_group" "challenge" {
       port     = 80
       protocol = "TCP"
     }
+    exposed_port {
+      port = 80
+      protocol = "TCP"
   }
 
 }
