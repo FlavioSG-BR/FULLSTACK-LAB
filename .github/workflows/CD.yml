@@ -4,7 +4,6 @@ name: 'CD'
 on:
   push:
     branches: [ "main" ]
-  pull_request:
   workflow_dispatch:
     inputs:
       actions:
@@ -16,27 +15,18 @@ on:
         - PLAN
         - APPLY
 
-permissions:
-  contents: read
-
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
-    
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
     
     env:
       ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
       ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
-      TF_VAR_dockerhube_username: ${{ secrets.DOCKERHUB_USERNAME }}
-      TF_VAR_dockerhube_username: ${{ secrets.DOCKERHUB_TOKEN }}
+      TF_VAR_dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
+      TF_VAR_dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
     
     steps:
     # Checkout the repository to the GitHub Actions runner
